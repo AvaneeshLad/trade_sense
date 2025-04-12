@@ -54,40 +54,47 @@ function App() {
         const decoded = jwtDecode(token);
         const expiryTime = decoded.exp * 1000;
 
-        const issuedAt = new Date(decoded.iat * 1000);
-        const expiresAt = new Date(decoded.exp * 1000);
+        if (Date.now() < expiryTime) {
+          if (isTokenExpiringSoon(token)) {
+            toast.warning("Your session is about to expire!", {
+              position: "top-right",
+              autoClose: 5000,
+            });
+          }
 
-        // console.log("Token issued at:", issuedAt.toLocaleString());
-        // console.log("Token expires at:", expiresAt.toLocaleString());
+          const timeUntilExpiry = expiryTime - Date.now();
+          const logoutTimer = setTimeout(() => {
+            toast.error("Your session has expired.", {
+              position: "top-right",
+              autoClose: 5000,
+            });
+            handleLogout();
+          }, timeUntilExpiry);
 
-        if (isTokenExpiringSoon(token)) {
-          toast.warning("Your session is about to expire!", {
-            position: "top-right",
-            autoClose: 5000,
-          });
+          setAuthenticated(true);
+          setLoading(false);
+          // ✅ Redirect only if on "/" or "/index"
+          if (location.pathname === '/' || location.pathname === '/index') {
+            navigate('/home2', { replace: true });
+          }
+          return () => clearTimeout(logoutTimer);
+        } else {
+          handleLogout(); // Clear token if expired
+          navigate('/', { replace: true }); // ✅ redirect to "/"
+          setLoading(false);
         }
-
-        const timeUntilExpiry = expiryTime - Date.now();
-        const logoutTimer = setTimeout(() => {
-          toast.error("Your session has expired.", {
-            position: "top-right",
-            autoClose: 5000,
-          });
-          handleLogout();
-        }, timeUntilExpiry);
-
-        setAuthenticated(true);
-        setLoading(false);
-
-        return () => clearTimeout(logoutTimer);
       } catch (err) {
         console.error("Invalid token", err);
+        handleLogout(); // Clear token if invalid
+        navigate('/', { replace: true });
         setLoading(false);
       }
     } else {
       setLoading(false);
+      navigate('/', { replace: true }); // ✅ No token → redirect to "/"
     }
   }, []);
+
 
   const handleLogin = () => {
     setAuthenticated(true);

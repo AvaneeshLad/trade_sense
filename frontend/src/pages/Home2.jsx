@@ -137,7 +137,6 @@ const Home2 = () => {
                 <div key={index} className="news-item">
                   <a href={article.link} target="_blank" rel="noopener noreferrer" className="news-link">
                     <h3 className="news-title">{article.title}</h3>
-                    <p className="news-summary">{article.summary}</p>
                   </a>
                 </div>
               ))

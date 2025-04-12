@@ -210,7 +210,7 @@ const Dashboard = () => {
       {selectedStock && (
         <section className="dashboard-content">
           {isLoading ? (
-            <div className="loading-spinner">Loading.....</div>
+            <div className="loading-spinner"></div>
           ) : chartData && (
             <div className="dashboard-chart-section">
               <div className="chart-header">
