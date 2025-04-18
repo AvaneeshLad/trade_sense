@@ -11,17 +11,17 @@
   justify-content: space-between;
   padding: 1rem 2rem;
   max-width: 1440px;
-  margin: 0 auto;
+  margin: 1.125rem 0.5% 0.625rem 3%;
   position: relative;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafd 100%);
   border-bottom: 1px solid #e3e9f6;
   box-shadow: 0 4px 12px rgba(10, 31, 68, 0.06);
   /* Added z-index for proper layering */
   z-index: 1000;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafd 100%);
+  background: #f1f5f9;
   border-bottom: 1px solid #e3e9f6;
   box-shadow: 0 4px 12px rgba(10, 31, 68, 0.06);
   width: 100%;
+  border-radius: 10px;
 }
 
 .navbar-content {
@@ -267,9 +267,11 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .navbar-container {
-    padding: 1rem 1.5rem; /* Reduced side padding */
-  }
+    .navbar-container {
+      padding: 1rem 1.5rem;
+      margin: 1rem 1% 0.5rem 2%; /* Adjusted percentages */
+      width: 97%;
+    }
   
   .navbar-content {
     gap: 1.5rem;
@@ -277,8 +279,9 @@
 }
 
 @media (max-width: 992px) {
-  .navbar-content {
-    gap: 1rem;
+  .navbar-container {
+    margin: 0.875rem 1% 0.5rem 2%;
+    width: 97%;
   }
   
   .navbar-search-container {
@@ -288,7 +291,9 @@
 
 @media (max-width: 768px) {
   .navbar-container {
-    padding: 0.75rem 1.25rem; /* Further reduced padding on mobile */
+    padding: 0.75rem 1.25rem;
+    margin: 0.75rem 1% 0.5rem 2%;
+    width: 97%;
   }
   
   .mobile-menu-toggle {
@@ -364,6 +369,8 @@
 @media (max-width: 480px) {
   .navbar-container {
     padding: 0.75rem 1rem;
+    margin: 0.5rem 1% 0.5rem 2%;
+    width: 97%;
   }
   
   .navbar-logo a {

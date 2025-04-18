@@ -254,18 +254,21 @@
   animation: bookmark-pulse 0.3s ease-out;
 }
 
-/* Loading spinner */
-.loading-spinner {
+/* New Mosaic Loader Container */
+.mosaic-loader-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 350px;
-  font-size: 1.2rem;
-  color: #666;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  flex: 1 1 65%;
+  min-width: 300px;
+  filter: blur(0.5px); /* Add blur effect */
 }
 
 /* Add these new styles to your Dashboard.css */
-
 .dashboard-content {
   display: flex;
   flex-wrap: wrap;
@@ -275,7 +278,7 @@
 
 /* Chart section (70% width) */
 .dashboard-chart-section, 
-.loading-spinner {
+.mosaic-loader-container {
   flex: 1 1 65%;
   min-width: 300px; /* Ensures it doesn't get too small on narrow screens */
 }
@@ -286,19 +289,6 @@
   min-width: 250px; /* Minimum width before wrapping */
 }
 
-/* Loading spinner specific styles */
-.loading-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 350px;
-  font-size: 1.2rem;
-  color: #666;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-}
-
 /* Adjust for smaller screens */
 @media (max-width: 1024px) {
   .dashboard-content {
@@ -306,37 +296,9 @@
   }
   
   .dashboard-chart-section,
-  .loading-spinner,
+  .mosaic-loader-container,
   .dashboard-trade-section {
     flex: 1 1 100%;
     width: 100%;
   }
 }
-
-.loading-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 350px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  flex: 1 1 70%;
-  min-width: 300px;
-}
-
-.loading-spinner::after {
-  content: "";
-  width: 50px;
-  height: 50px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #1a73e8;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-/* Rest of your existing CSS remains the same */

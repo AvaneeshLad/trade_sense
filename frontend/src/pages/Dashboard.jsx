@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Chart from 'react-apexcharts';
 import { Bookmark, CheckCircle, XCircle } from 'lucide-react';
+import { Mosaic } from 'react-loading-indicators';
 import TradeSection from './TradeSection';
 import NewsSection from './NewsSection';
 import axios from 'axios';
@@ -63,8 +64,6 @@ const Dashboard = () => {
     try {
       const response = await fetch(`${baseURL}/api/stock/chart/${symbol}?range=${encodeURIComponent(newRange)}`);
       const stockData = await response.json();
-
-      // console.log("Fetched JSON data:", stockData); // ← ADD THIS
 
       if (!stockData.chart?.result?.[0]?.timestamp) {
         setToast({
@@ -210,7 +209,9 @@ const Dashboard = () => {
       {selectedStock && (
         <section className="dashboard-content">
           {isLoading ? (
-            <div className="loading-spinner"></div>
+            <div className="mosaic-loader-container">
+              <Mosaic color="#5f6ad9" size="large" text="" textColor="" />
+            </div>
           ) : chartData && (
             <div className="dashboard-chart-section">
               <div className="chart-header">
@@ -218,7 +219,6 @@ const Dashboard = () => {
                   <h2>{selectedStock.name} ({selectedStock.symbol})</h2>
                   <p className="stock-price">Current Price: ₹{selectedStock.price}</p>
                 </div>
-                {/* ✅ Updated to handle toggle with confirmation */}
                 <button className="bookmark-btn" onClick={handleWatchlistToggle} title={isSaved ? "Remove from Watchlist" : "Add to Watchlist"}>
                   <Bookmark size={20} className={isSaved ? "bookmark-filled" : ""} />
                 </button>
