@@ -18,8 +18,10 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
-app.use(bodyParser.json());
+app.use(cors({
+    origin: ['https://trade-sense-qr9q.vercel.app', process.env.FRONTEND_URL], // Add all allowed origins
+    credentials: true
+  }));app.use(bodyParser.json());
 
 // API routes
 app.use('/api/trades', tradeRoutes);
