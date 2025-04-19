@@ -220,7 +220,7 @@ const Dashboard = () => {
                   <p className="stock-price">Current Price: ₹{selectedStock.price}</p>
                 </div>
                 <button className="bookmark-btn" onClick={handleWatchlistToggle} title={isSaved ? "Remove from Watchlist" : "Add to Watchlist"}>
-                  <Bookmark size={20} className={isSaved ? "bookmark-filled" : ""} />
+                  Watchlist<Bookmark size={20} className={isSaved ? "bookmark-filled" : ""} />
                 </button>
               </div>
 

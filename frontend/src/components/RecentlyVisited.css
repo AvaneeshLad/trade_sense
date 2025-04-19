@@ -117,3 +117,10 @@
     padding: 0 2rem; /* gives breathing space between carousel and buttons */
   }
   
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }

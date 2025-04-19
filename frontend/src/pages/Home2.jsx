@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Pin, Newspaper, Star, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import StockWatchlist from './StockWatchlist'; // Import the component
 import RecentlyVisited from '../components/RecentlyVisited';
@@ -121,7 +122,9 @@ const Home2 = () => {
       </div>
 
       <div className="recently-visited-container">
-        <h2 className="section-title">Recently Visited 📌</h2>
+        <h2 className="section-title flex items-center gap-1">
+          Recently Visited <Pin className="w-5 h-5 text-black-600" />
+        </h2>
         <RecentlyVisited />
       </div>
 
@@ -130,7 +133,9 @@ const Home2 = () => {
       <div className="watchlist-news-container">
         {/* News Section */}
         <div className="news-container">
-          <h2 className="section-title">Market News 📰</h2>
+          <h2 className="section-title flex items-center gap-1">
+            Market News <Newspaper className="w-5 h-5 text-gray-600" />
+          </h2>
           <div className="news-list">
             {news.length > 0 ? (
               news.map((article, index) => (
@@ -148,7 +153,9 @@ const Home2 = () => {
 
         {/* Watchlist Section */}
         <div className="watchlist-container">
-          <h2 className="section-title">Your Watchlist ⭐</h2>
+          <h2 className="section-title flex items-center gap-1">
+            Your Watchlist <Star className="w-5 h-5 text-yellow-500" />
+          </h2>
           <div className="watchlist-scroll">
             <StockWatchlist userId={currentUser?.id} />
           </div>

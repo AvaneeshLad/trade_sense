@@ -360,7 +360,7 @@ const TradeList = () => {
     <div className="portfolio-section compact">
       <div className="portfolio-header">
         <div className="header-left">
-          <div className="subtext">Current Value</div>
+          <div className="subtext">My Portfolio Value</div>
           <div className="current-value">
             ₹{totalCurrentValue.toFixed(2)}
           </div>

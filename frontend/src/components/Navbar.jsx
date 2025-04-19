@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import Profile from "../components/Profile/Profile";
+import axios from "axios";
 
 const Navbar = ({ onLogout, currentUser }) => {
   const [searchQuery, setSearchQuery] = useState("");
