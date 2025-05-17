@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Pin, Newspaper, Star, Info } from 'lucide-react';
+import { Pin, Newspaper, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import StockWatchlist from './StockWatchlist'; // Import the component
 import RecentlyVisited from '../components/RecentlyVisited';
@@ -49,22 +49,20 @@ const Home2 = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch(`${baseURL}/api/news`);
+      const response = await fetch(`${baseURL}/api/pulse`);
       const data = await response.json();
-      const top6News = data.slice(0, 6);
-
-      if (Array.isArray(top6News)) {
-        setNews(top6News);
-        cachedData.news = top6News;
-      } else {
-        console.error('Invalid news data:', data);
-        setNews([]);
-      }
+      // console.log('News API response:', data); // Add this to verify structure
+      const newsArray = Array.isArray(data) ? data : data.news;
+      const top6News = Array.isArray(newsArray) ? newsArray.slice(0, 8) : [];
+  
+      setNews(top6News);
+      cachedData.news = top6News;
     } catch (error) {
       console.error('Error fetching news:', error);
       setNews([]);
     }
   };
+  
 
   useEffect(() => {
     const loadData = () => {
@@ -132,7 +130,7 @@ const Home2 = () => {
       {/* Watchlist and News Sections */}
       <div className="watchlist-news-container">
         {/* News Section */}
-        <div className="news-container">
+        {/* <div className="news-container">
           <h2 className="section-title flex items-center gap-1">
             Market News <Newspaper className="w-5 h-5 text-gray-600" />
           </h2>
@@ -149,7 +147,37 @@ const Home2 = () => {
               <div className="loading-news">Loading market news...</div>
             )}
           </div>
+        </div> */}
+
+        <div className="news-container">
+  <h2 className="section-title flex items-center gap-1 text-xl font-semibold mb-4">
+    Market News <Newspaper className="w-5 h-5 text-gray-600" />
+  </h2>
+
+  <div className="news-list space-y-4">
+    {news.length > 0 ? (
+      news.map((article, index) => (
+        <div key={index} className="news-item">
+          <a
+            href={article.url || article.link} // fallback if one is missing
+            target="_blank"
+            rel="noopener noreferrer"
+            className="news-link hover:underline text-gray-400 font-medium"
+          >
+            <h3 className="news-title">{article.title}</h3>
+          </a>
+          <p className="text-sm text-gray-700">{article.description}</p>
+          <span className="text-xs text-gray-500">
+            {article.time} — {article.source}
+          </span>
         </div>
+      ))
+    ) : (
+      <div className="loading-news text-gray-500">Loading market news...</div>
+    )}
+  </div>
+</div>
+
 
         {/* Watchlist Section */}
         <div className="watchlist-container">
