@@ -13,6 +13,7 @@ const watchlistRoutes = require('./routes/watchlistRoutes');
 const yahooRoutes = require('./routes/yahooRoutes');
 const newsRoutes = require('./routes/newsRoutes');
 const recentlyVisitedRoutes = require('./routes/visitedRoutes');
+const pulsenewsRoutes = require('./routes/pulsenewsRoutes');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use('/api/watchlist', watchlistRoutes);
 app.use('/api/stock', yahooRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/recentlyVisited', recentlyVisitedRoutes);
+app.use('/api/pulse', pulsenewsRoutes);
 
 const PORT = process.env.PORT || 5000;
 

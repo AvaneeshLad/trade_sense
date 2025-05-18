@@ -49,12 +49,11 @@ const Home2 = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch(`${baseURL}/api/news`);
+      const response = await fetch(`${baseURL}/api/pulse`);
       const data = await response.json();
-      console.log('News API response:', data); // Add this to verify structure
       const newsArray = Array.isArray(data) ? data : data.news;
-      const top6News = Array.isArray(newsArray) ? newsArray.slice(0, 6) : [];
-  
+      const top6News = Array.isArray(newsArray) ? newsArray.slice(0, 8) : [];
+
       setNews(top6News);
       cachedData.news = top6News;
     } catch (error) {
@@ -62,7 +61,7 @@ const Home2 = () => {
       setNews([]);
     }
   };
-  
+
 
   useEffect(() => {
     const loadData = () => {
@@ -131,20 +130,30 @@ const Home2 = () => {
       <div className="watchlist-news-container">
         {/* News Section */}
         <div className="news-container">
-          <h2 className="section-title flex items-center gap-1">
+          <h2 className="section-title flex items-center gap-1 text-xl font-semibold mb-4">
             Market News <Newspaper className="w-5 h-5 text-gray-600" />
           </h2>
-          <div className="news-list">
+
+          <div className="news-list space-y-4">
             {news.length > 0 ? (
               news.map((article, index) => (
                 <div key={index} className="news-item">
-                  <a href={article.link} target="_blank" rel="noopener noreferrer" className="news-link">
+                  <a
+                    href={article.url || article.link} // fallback if one is missing
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="news-link hover:underline text-gray-400 font-medium"
+                  >
                     <h3 className="news-title">{article.title}</h3>
                   </a>
+                  <p className="text-sm text-gray-700">{article.description}</p>
+                  <span className="text-xs text-gray-500">
+                    {article.time} — {article.source}
+                  </span>
                 </div>
               ))
             ) : (
-              <div className="loading-news">Loading market news...</div>
+              <div className="loading-news text-gray-500">Loading market news...</div>
             )}
           </div>
         </div>
