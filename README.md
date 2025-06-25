@@ -58,3 +58,69 @@ PaperTrade is a full-stack stock trading simulation platform that allows users t
 
 ## 📦 Project Structure
 
+papertrade/
+├── backend/
+│ ├── models/
+│ │ ├── User.js
+│ │ ├── Trade.js
+│ │ ├── Transaction.js
+│ │ ├── Watchlist.js
+│ │ └── RecentlyVisited.js
+│ ├── routes/
+│ │ ├── authRoutes.js
+│ │ ├── quoteRoutes.js
+│ │ ├── tradeRoutes.js
+│ │ ├── watchlistRoutes.js
+│ │ ├── visitedRoutes.js
+│ │ ├── updateRoutes.js
+│ │ ├── newsRoutes.js
+│ │ ├── pulseNewsRoutes.js
+│ │ └── yahooRoutes.js
+│ ├── authMiddleware.js
+│ ├── db.js
+│ ├── server.js
+│ └── vercel.json
+│
+├── frontend/
+│ ├── components/
+│ ├── pages/
+│ ├── App.jsx
+│ ├── main.jsx
+│ ├── vite.config.js
+│ └── vercel.json
+│
+├── news_scraping/
+│ ├── news_scraper.py
+│ └── scraper.js
+│
+├── .env (not included)
+└── README.md
+
+
+---
+
+## 📋 Prerequisites
+
+Before running the app, ensure you have the following installed:
+
+- **Node.js** (v18 or later)
+- **npm** (v9 or later)
+- **Python 3.x** (for scraping scripts)
+- **MongoDB Atlas** account
+- **Vercel CLI** (for deployment)
+
+---
+
+## 🔧 Local Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/papertrade.git
+cd papertrade
+
+MONGODB_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_jwt_secret
+YAHOO_API_KEY=your_yahoo_api_key (if required)
+
+
