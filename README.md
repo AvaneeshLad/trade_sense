@@ -42,8 +42,6 @@ PaperTrade is a full-stack stock trading simulation platform that allows users t
 
 - `news_scraper.py`: Python-based news scraper
 - `scraper.js`: (Optional) JS-based fallback
-- Runs on a scheduler/cron job
-- Scraped data is stored in MongoDB
 
 ### 🌍 External APIs
 
@@ -54,64 +52,71 @@ PaperTrade is a full-stack stock trading simulation platform that allows users t
 
 - MongoDB Atlas (cloud-hosted NoSQL database)
 
----
 
 ## 📦 Project Structure
 
+# Project Structure
+
 papertrade/
 ├── backend/
-│ ├── models/
-│ │ ├── User.js
-│ │ ├── Trade.js
-│ │ ├── Transaction.js
-│ │ ├── Watchlist.js
-│ │ └── RecentlyVisited.js
-│ ├── routes/
-│ │ ├── authRoutes.js
-│ │ ├── quoteRoutes.js
-│ │ ├── tradeRoutes.js
-│ │ ├── watchlistRoutes.js
-│ │ ├── visitedRoutes.js
-│ │ ├── updateRoutes.js
-│ │ ├── newsRoutes.js
-│ │ ├── pulseNewsRoutes.js
-│ │ └── yahooRoutes.js
-│ ├── authMiddleware.js
-│ ├── db.js
-│ ├── server.js
-│ └── vercel.json
-│
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Trade.js
+│   │   ├── Transaction.js
+│   │   ├── Watchlist.js
+│   │   └── RecentlyVisited.js
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── quoteRoutes.js
+│   │   ├── tradeRoutes.js
+│   │   ├── watchlistRoutes.js
+│   │   ├── visitedRoutes.js
+│   │   ├── updateRoutes.js
+│   │   ├── newsRoutes.js
+│   │   ├── pulseNewsRoutes.js
+│   │   └── yahooRoutes.js
+│   ├── authMiddleware.js
+│   ├── db.js
+│   ├── server.js
+│   └── vercel.json
 ├── frontend/
-│ ├── components/
-│ ├── pages/
-│ ├── App.jsx
-│ ├── main.jsx
-│ ├── vite.config.js
-│ └── vercel.json
-│
-├── news_scraping/
-│ ├── news_scraper.py
-│ └── scraper.js
-│
-├── .env (not included)
-└── README.md
-
-
+│   ├── components/
+│   ├── pages/
+│   ├── App.jsx
+│   ├── main.jsx
+│   ├── vite.config.js
+│   └── vercel.json
+└── news_scraping/
+    ├── news_scraper.py
+    ├── scraper.js
+    ├── .env (not included)
+    └── README.md
 ---
 
-## 📋 Prerequisites
+## 📦 Tech Stack
 
-Before running the app, ensure you have the following installed:
+### 🔹 Frontend
+- React (Vite)
+- React Router
+- Axios
 
-- **Node.js** (v18 or later)
-- **npm** (v9 or later)
-- **Python 3.x** (for scraping scripts)
-- **MongoDB Atlas** account
-- **Vercel CLI** (for deployment)
+### 🔹 Backend
+- Node.js + Express.js
+- Mongoose (MongoDB)
+- JSON Web Token (JWT)
 
+### 🔹 Database
+- MongoDB Atlas (cloud-hosted NoSQL)
+
+### 🔹 External APIs
+- Yahoo Finance API (market data)
+- PulseNews (curated news)
+
+### 🔹 News Scraping
+- Python + BeautifulSoup for scraping
 ---
 
-## 🔧 Local Setup Instructions
+## ⚙️ Setup Instructions
 
 ### 1. Clone the Repository
 
@@ -119,8 +124,29 @@ Before running the app, ensure you have the following installed:
 git clone https://github.com/your-username/papertrade.git
 cd papertrade
 
+```
+### 2. Setup Environment Variables
+
+Create a `.env` file inside the `backend/` directory with the following content:
+
+```env
 MONGODB_URI=your_mongodb_atlas_connection_string
-JWT_SECRET=your_jwt_secret
+JWT_SECRET=your_jwt_secret_key
 YAHOO_API_KEY=your_yahoo_api_key (if required)
+```
+```env
+Create a `.env` file inside the `frontend/` directory with the following content:
+VITE_GOOGLE_CLIENT_ID = generate
+```
 
+## ✨ Features
 
+- 🔐 **User Authentication** – JWT-based signup and login system for secure access.
+- 📈 **Simulated Trading** – Place mock buy/sell trades and track your trading history.
+- ⭐ **Watchlist Support** – Add and manage your personal stock watchlist.
+- 📍 **Recently Visited** – Automatically keeps track of stocks you've viewed.
+- 📊 **Live Stock Quotes** – Integrated with Yahoo Finance API for real-time data.
+- 📰 **News Feed** – Real-time market news from Pulse by Zerodha and a custom scraper.
+- 🧠 **Clean REST API** – Built using modular Express routes for scalability.
+- ☁️ **Cloud MongoDB** – Utilizes MongoDB Atlas for secure cloud data storage.
+- ⚛️ **Modern Frontend** – Fast and responsive single-page app using React + Vite.
