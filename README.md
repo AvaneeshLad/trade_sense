@@ -1,152 +1,109 @@
-# 📈 PaperTrade - Stock Trading Simulation Platform
+## Trade Sense
 
-PaperTrade is a full-stack stock trading simulation platform that allows users to explore financial markets, monitor real-time news, simulate trades, and manage a personalized watchlist. Built with a modern tech stack including **React (Vite SPA)**, **Node.js/Express**, and **MongoDB Atlas**, it also leverages **Yahoo Finance**, **PulseNews APIs**, and custom **news scrapers** for a rich user experience.
+A full-stack stock trading simulation platform with real-time data, portfolio management, and news, built with **MERN** (MongoDB, Express, React, Node.js) and modern frontend tooling.
 
----
+### Table of Contents
 
-## 🚀 Features
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Backend Setup](#backend-setup)
+- [Frontend Setup](#frontend-setup)
+- [API Endpoints](#api-endpoints)
+- [Screenshots](#screenshots)
+- [License](#license)
 
-- 🔐 User Authentication (JWT-based)
-- 💼 Trade Simulation with transaction history
-- 📊 Real-time stock data via Yahoo Finance API
-- 📰 News feed via PulseNews API and custom scrapers
-- 👀 Personalized Watchlist and Recently Visited tracking
-- 📅 Scheduled news scraping using Cron jobs
-- ☁️ Fully cloud-based (MongoDB Atlas, Vercel hosting)
+### Features
 
----
+- User authentication (JWT-based)
+- Simulated stock trading (buy/sell)
+- Portfolio and transaction history
+- Real-time stock quotes and news
+- Watchlist management
+- Responsive, modern React UI (Vite, TailwindCSS)
+- Data visualization (charts, dashboards)
+- Session management and notifications
 
-## 🧱 Architecture Overview
-
-### 👨‍💻 Frontend – React (Vite)
-
-- `App.jsx`, `main.jsx`: Main entry points
-- `pages/`: Route-based views
-- `components/`: Reusable UI components
-- `vite.config.js`: Vite configuration
-- `vercel.json`: Frontend deployment config
-
-### 🌐 Backend – Express.js (Node)
-
-- `server.js`: Main server entry
-- `authMiddleware.js`: Authentication layer
-- `db.js`: MongoDB Atlas connection
-- Routes:
-  - `authRoutes.js`, `quoteRoutes.js`, `tradeRoutes.js`
-  - `watchlistRoutes.js`, `visitedRoutes.js`, `updateRoutes.js`
-  - `newsRoutes.js`, `pulseNewsRoutes.js`, `yahooRoutes.js`
-- Models (MongoDB Schemas):
-  - `User.js`, `Trade.js`, `Transaction.js`, `Watchlist.js`, `RecentlyVisited.js`
-
-### 📰 News Scraping
-
-- `news_scraper.py`: Python-based news scraper
-- `scraper.js`: (Optional) JS-based fallback
-
-### 🌍 External APIs
-
-- [Yahoo Finance API](https://www.yahoofinanceapi.com/)
-- [PulseNews API](https://pulse.zerodha.com/)
-  
-### 💾 Database
-
-- MongoDB Atlas (cloud-hosted NoSQL database)
-
-
-## 📦 Project Structure
-
-# Project Structure
-
-papertrade/
-├── backend/
-│   ├── models/
-│   │   ├── User.js
-│   │   ├── Trade.js
-│   │   ├── Transaction.js
-│   │   ├── Watchlist.js
-│   │   └── RecentlyVisited.js
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── quoteRoutes.js
-│   │   ├── tradeRoutes.js
-│   │   ├── watchlistRoutes.js
-│   │   ├── visitedRoutes.js
-│   │   ├── updateRoutes.js
-│   │   ├── newsRoutes.js
-│   │   ├── pulseNewsRoutes.js
-│   │   └── yahooRoutes.js
-│   ├── authMiddleware.js
-│   ├── db.js
-│   ├── server.js
-│   └── vercel.json
-├── frontend/
-│   ├── components/
-│   ├── pages/
-│   ├── App.jsx
-│   ├── main.jsx
-│   ├── vite.config.js
-│   └── vercel.json
-└── news_scraping/
-    ├── news_scraper.py
-    ├── scraper.js
-    ├── .env (not included)
-    └── README.md
----
-
-## 📦 Tech Stack
-
-### 🔹 Frontend
-- React (Vite)
-- React Router
-- Axios
-
-### 🔹 Backend
-- Node.js + Express.js
-- Mongoose (MongoDB)
-- JSON Web Token (JWT)
-
-### 🔹 Database
-- MongoDB Atlas (cloud-hosted NoSQL)
-
-### 🔹 External APIs
-- Yahoo Finance API (market data)
-- PulseNews (curated news)
-
-### 🔹 News Scraping
-- Python + BeautifulSoup for scraping
----
-
-## ⚙️ Setup Instructions
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/your-username/papertrade.git
-cd papertrade
+### Project Structure
 
 ```
-### 2. Setup Environment Variables
-
-Create a `.env` file inside the `backend/` directory with the following content:
-
-```env
-MONGODB_URI=your_mongodb_atlas_connection_string
-JWT_SECRET=your_jwt_secret_key
-YAHOO_API_KEY=your_yahoo_api_key (if required)
-```
-```env
-Create a `.env` file inside the `frontend/` directory with the following content:
-VITE_GOOGLE_CLIENT_ID = generate
+trade_sense-main/
+  backend/    # Node.js, Express, MongoDB (API, auth, trading logic)
+  frontend/   # React, Vite, TailwindCSS (UI, routing, charts)
 ```
 
-## ✨ Features
+### Backend Setup
 
-- 🔐 **User Authentication** – JWT-based signup and login system for secure access.
-- 📈 **Simulated Trading** – Place mock buy/sell trades and track your trading history.
-- ⭐ **Watchlist Support** – Add and manage your personal stock watchlist.
-- 📍 **Recently Visited** – Automatically keeps track of stocks you've viewed.
-- 📊 **Live Stock Quotes** – Integrated with Yahoo Finance API for real-time data.
-- 📰 **News Feed** – Real-time market news from Pulse by Zerodha and a custom scraper.
-- 🧠 **Clean REST API** – Built using modular Express routes for scalability.
-- ☁️ **Cloud MongoDB** – Utilizes MongoDB Atlas for secure cloud data storage.
-- ⚛️ **Modern Frontend** – Fast and responsive single-page app using React + Vite.
+1. **Install dependencies:**
+   ```bash
+   cd backend
+   npm install
+   ```
+
+2. **Environment variables:**
+   - Create a `.env` file in `backend/` with:
+     ```
+     MONGODB_URI=your_mongodb_connection_string
+     JWT_SECRET=your_jwt_secret
+     FRONTEND_URL=http://localhost:5173
+     PORT=5000
+     ```
+
+3. **Run the server:**
+   ```bash
+   npm run dev
+   ```
+   The backend will start on `http://localhost:5000`.
+
+### Frontend Setup
+
+1. **Install dependencies:**
+   ```bash
+   cd frontend
+   npm install
+ 
+   ```
+
+2. **Environment variables:**
+   - Create a `.env` file in `frontend/` with:
+     ```
+     VITE_GOOGLE_CLIENT_ID=your_google_client_id
+     VITE_BASE_URL=http://localhost:5000
+     ```
+
+3. **Run the app:**
+   ```bash
+   npm run dev
+   ```
+   The frontend will start on `http://localhost:5173`.
+
+### API Endpoints
+
+- `POST /api/auth` - User authentication (login/signup)
+- `GET /api/trades` - Get user trades (protected)
+- `POST /api/trades` - Buy stock (protected)
+- `POST /api/trades/sell` - Sell stock (protected)
+- `GET /api/trades/transactions` - Transaction history
+- `GET /api/quote` - Real-time stock quotes
+- `GET /api/news` - Latest news
+- `GET /api/watchlist` - User watchlist management
+- ...and more (see `/backend/routes/` for all endpoints)
+
+### Screenshots
+
+### Intro page
+![image](https://github.com/user-attachments/assets/0d351c27-111b-430f-be59-8557648738a9)
+
+### Home Page
+![image](https://github.com/user-attachments/assets/a9f7e63b-affa-4dae-a2ec-82b7b33080d9)
+
+### Market News and Watchlist
+![image](https://github.com/user-attachments/assets/bb0ca3f1-2130-43c9-b1f7-58b36c4d7e4f)
+
+### Portfolio Page
+![image](https://github.com/user-attachments/assets/641cfc45-ee06-44ad-bdb3-5009a6759efd)
+
+### Orders Page
+![image](https://github.com/user-attachments/assets/0e7a4b72-0bdf-43ee-b4f6-86ffeae45086)
+
+### License
+MIT
